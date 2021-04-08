@@ -1,13 +1,12 @@
 import java.util.Random;
 
-
 public class Persona {
 
    
     private String nombre;
     private int edad;
-    private float peso;
-    private float altura;
+    private double peso;
+    private double altura;
     private int dni;
     private char sexo;
    
@@ -19,13 +18,13 @@ public class Persona {
 
       
     //para calcular el IMC el ejercicio recomienda usar constantes:
-    public static final int pesoIdeal = -1;
-    public static final int pesoBajo = 0;
+    public static final int pesoIdeal = 0;
+    public static final int pesoBajo = -1;
     public static final int sobrepreso = 1;
 
     //pide constructor con 3 paramatros con nombre edada y sexo. uno por defecto, uno con todos los atributos
     //por defecto
-    public Persona(String nombre, int edad, char sexo, float peso, float altura) {
+    public Persona(String nombre, int edad, char sexo, double peso, double altura) {
         this.nombre = "";
         this.edad = 0;
         this.sexo = sexoPorDefecto;
@@ -42,7 +41,7 @@ public class Persona {
     }
     
     //con todos los atributos (over kill much?)
-    public Persona (String nombre,int edad,char sexo, float peso, float altura, int dni){
+    public Persona (String nombre,int edad,char sexo, double peso, double altura, int dni){
         this(nombre, edad, sexo);
         this.peso = peso;
         this.altura= altura;
@@ -89,6 +88,39 @@ public class Persona {
 
 
     }
+    // metodo para calcular el indice de masa corporal IMC (peso en kg/(altura^2  en m). menor que 20, la función devuelve un -1,si devuelve un número entre 20 y 25 (incluidos) 0
+    //mayor que 25 significa que tiene sobrepeso 1
+
+    public int calcularIMC(){
+        double IMC = this.peso / (this.altura*this.altura);
+        if (IMC < 20){
+            return pesoBajo;
+        } else if (IMC >= 20 && IMC <= 25){
+            return pesoIdeal;
+        } else 
+            return sobrepreso;
+    }
+
+    //pide Setters para todo menos dni
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    public void setEdad(int edad){
+        this.edad = edad;
+    }
+    public void setPeso(double peso){
+        this.peso = peso;
+    }
+    public void setAltura (double altura){
+        this.altura = altura;
+    }
+    public void setSexo(char sexo){
+        this.sexo = sexo;
+    }
+
+    
+
 
     //pide usar el metodo toString para mostrar toda la info del objeto. 
     //El método toString nos permite mostrar la información completa de un objeto, es decir, el valor de sus atributos
