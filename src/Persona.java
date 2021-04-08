@@ -10,22 +10,50 @@ public class Persona {
     private float altura;
     private int dni;
     private char sexo;
-
+   
     //los atributos tienen un valor por defecto menos el dni
     //para ello se usa modificador de acceso(public private) +
     //la palabra "final" + tipo de variable + variable = valor asignado
     
+    private final static char sexoPorDefecto = 'H'; //char comilla simple
 
-    private final char sexoPorDefecto = 'H'; //char comilla simple
-   
+      
     //para calcular el IMC el ejercicio recomienda usar constantes:
-    private final int pesoIdeal = -1;
-    private final int pesoBajo = 0;
-    private final int sobrepreso = 1;
-  
- // pide metodo para comprobar el sexo, si el introducido es correcto y 
-// si no lo es por defecto marcara H
+    public static final int pesoIdeal = -1;
+    public static final int pesoBajo = 0;
+    public static final int sobrepreso = 1;
 
+    //pide constructor con 3 paramatros con nombre edada y sexo. uno por defecto, uno con todos los atributos
+    //por defecto
+    public Persona(String nombre, int edad, char sexo, float peso, float altura) {
+        this.nombre = "";
+        this.edad = 0;
+        this.sexo = sexoPorDefecto;
+        this.peso = 0;
+        this.altura = 0;       
+    }
+
+    //tres parametros
+    public Persona(String nombre, int edad, char sexo) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.sexo =sexo;
+        comprobarSexo();
+    }
+    
+    //con todos los atributos (over kill much?)
+    public Persona (String nombre,int edad,char sexo, float peso, float altura, int dni){
+        this(nombre, edad, sexo);
+        this.peso = peso;
+        this.altura= altura;
+        comprobarSexo(); // tuve que chequear en la pagina del ejercicio no estoy segura por que va asi
+        generarDni();
+        this.dni = dni;
+    }
+  
+
+ // pide metodo para comprobar el sexo, si el introducido es correcto y 
+ // si no lo es por defecto marcara H
     
     public void comprobarSexo() {
         if (sexo != 'H' && sexo != 'M'){
@@ -71,7 +99,7 @@ public class Persona {
     }
     El mensaje puede ser como nosotros queramos.
 
-Veamos un ejemplo practico: (java desde cero)
+Veamos un ejemplo practico:
 public class EmpleadoApp {
  
     public static void main(String[] args) {
@@ -89,9 +117,20 @@ public class EmpleadoApp {
  
 }*/
 
+/*public String Persona.toString(){
+    //hago un if para saber que me de el sexo correcto de a persona
+    String sexo;
+    if (this.sexo == 'H'){
+        sexo= "Hombre";
+    }
+    else{ 
+        sexo = "Mujer";
+    }
+    String mensaje= "Informacion de la persona" + "nombre: "+ nombre + edad + " de edad " + " dni numero "+ dni + " su peso es " + peso+ " kg " + " mide " + altura + " metros";
+    return mensaje;
+}
 
-
-
+*/
 
 
 }
